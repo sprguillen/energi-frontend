@@ -28,6 +28,10 @@ export interface PaginationProps {
   onClick: (event: PaginateOnClick) => void,
 }
 
+export interface MetamaskProps {
+  connectWallet: () => void,
+}
+
 export interface ThemeContextType {
   theme: Theme;
   toggle: () => void;
