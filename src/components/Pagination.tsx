@@ -12,9 +12,9 @@ const Pagination: React.FC<PaginationProps> = ({ pageCount, onClick }) => {
       onPageChange={onClick}
       containerClassName="flex justify-center space-x-2"
       pageClassName="rounded-md"
-      pageLinkClassName="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md"
-      previousLinkClassName="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md"
-      nextLinkClassName="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md"
+      pageLinkClassName="px-4 py-2 bg-gray-200 dark:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-50 rounded-md"
+      previousLinkClassName="px-4 py-2 bg-gray-200 dark:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-50 rounded-md"
+      nextLinkClassName="px-4 py-2 bg-gray-200 dark:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-50 rounded-md"
       activeLinkClassName="border-2 border-green-500 text-slate-500"
     />
   )

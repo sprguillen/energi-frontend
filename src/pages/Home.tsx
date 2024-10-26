@@ -51,7 +51,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <section className="py-12 flex flex-col items-center justify-center">
+    <section className="py-12 flex flex-col items-center justify-center min-h-[1000px]">
       {
         loading ? <Spinner /> : (
           <>
@@ -68,8 +68,8 @@ const Home: React.FC = () => {
                 {
                   paginatedAssets.length > 0 && paginatedAssets.map((asset: Asset) => 
                     <tr key={asset.address} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <td className="px-6 py-4">{asset.index}</td>
-                      <td className="px-6 py-4 flex">
+                      <td className="px-6 py-3">{asset.index}</td>
+                      <td className="px-6 py-3 flex">
                         <img
                           src={`/icons/${asset.symbol}.svg`}
                           onError={({ currentTarget }) => {
@@ -83,8 +83,8 @@ const Home: React.FC = () => {
                           {asset.name}
                         </span>
                       </td>
-                      <td className="px-6 py-4">{asset.symbol}</td>
-                      <td className="px-6 py-4">{asset.lastPrice.toLocaleString()}</td>
+                      <td className="px-6 py-3">{asset.symbol}</td>
+                      <td className="px-6 py-3">${asset.lastPrice.toLocaleString()}</td>
                     </tr>
                   )
                 }

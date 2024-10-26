@@ -6,7 +6,7 @@ const Layout: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="w-[1280px] h-screen">
+      <main className="w-[1280px]">
         <Outlet />
       </main>
     </>

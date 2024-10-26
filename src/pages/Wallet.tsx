@@ -84,7 +84,7 @@ const Wallet: React.FC = () => {
             dark:bg-gray-800 dark:border-gray-700
           ">
             <div className="flex justify-between mb-2">
-              <span className="font-bold flex">
+              <span className="font-bold flex dark:text-gray-400">
                 <img src={NrgeImg} alt="NRGE logo" className="w-6 h-6 mr-1" />
                 Energi Network
               </span>
@@ -95,23 +95,23 @@ const Wallet: React.FC = () => {
             </div>
             <hr />
             <div className="flex justify-between mt-2">
-              <div className="flex space-x-2">
+              <div className="flex space-x-2 dark:text-gray-400">
                 <img src={MetamaskImg} className="w-8 h-8" alt="Metamask Icon" />
                 <span className="my-auto">{ `${account.slice(0, 6)}...${account.slice(-8)}` }</span>
               </div>
               <div className="flex space-x-2">
-                <FileCopyIcon className="cursor-pointer" onClick={copyHandler} />
-                <LaunchIcon className="cursor-pointer" onClick={openScanHandler} />
+                <FileCopyIcon className="cursor-pointer dark:text-white" onClick={copyHandler} />
+                <LaunchIcon className="cursor-pointer dark:text-white" onClick={openScanHandler} />
               </div>
             </div>
             <div className="mt-8 flex flex-col">
-              <h2 className="text-gray-400">Total Balance</h2>
+              <h2 className="text-gray-400 ">Total Balance</h2>
               <div className="flex justify-center items-center mt-2">
                 <img src={NrgeImg} alt="NRGE logo large" className="w-12 h-12 mr-1" />
-                <span className="text-2xl font-medium">{ngreBalance}</span>
+                <span className="text-2xl font-medium dark:text-white">{ngreBalance}</span>
               </div>
               <div className="flex justify-center items-center mt-2">
-                <span className="text-2xl font-medium">${Number(ngreBalance) * Number(usdPrice)}</span>
+                <span className="text-2xl font-medium dark:text-white">${Number(ngreBalance) * Number(usdPrice)}</span>
               </div>
             </div>
           </div>
