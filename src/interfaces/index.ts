@@ -12,6 +12,10 @@ export interface Asset {
   takerFee: number,
 }
 
+export interface ToastContextProps {
+  children: ReactNode;
+}
+
 export interface PaginateOnClick {
   index: number | null;
   selected: number;

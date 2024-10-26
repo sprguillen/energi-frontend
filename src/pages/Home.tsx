@@ -9,11 +9,11 @@ enum PaginationDefaults {
 }
 
 const Home: React.FC = () => {
-  const [itemOffset, setItemOffset] = useState(0);
+  const [itemOffset, setItemOffset] = useState<number>(0);
   const [assets, setAssets] = useState<Asset[]>([]);
   const [paginatedAssets, setPaginatedAssets] = useState<Asset[]>([]);
-  const [pageCount, setPageCount] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [pageCount, setPageCount] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const getData = async () => {

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Web3 from 'web3';
 import BigNumber from 'bignumber.js';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import LaunchIcon from '@mui/icons-material/Launch';
 import Metamask from '../components/Metamask';
+import Spinner from '../components/Spinner';
+import { ToastContext } from '../context/Toast';
 import MetamaskImg from '../assets/metamask.svg';
 import NrgeImg from '../assets/nrge.svg';
 import { ABI, ADDRESS } from '../artifacts/abi';
 import { getNgrePriceInUSD } from '../../lib/api';
 
 const Wallet: React.FC = () => {
+  const useToast = () => useContext(ToastContext);
+  const { showInfo, showError } = useToast();
   const [account, setAccount] = useState<string | null>(localStorage.getItem('account'));
   const [ngreBalance, setNgreBalance] = useState<number | string>();
   const [usdPrice, setUsdPrice] = useState<number | string>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (window.ethereum) {
@@ -39,6 +44,7 @@ const Wallet: React.FC = () => {
         const balance = await contract.methods.balanceOf(account).call();
         const decimals = await contract.methods.decimals().call();
         setNgreBalance(BigNumber(balance).div(decimals).toLocaleString());
+        setLoading(false);
       }
 
       getTokenBalance();
@@ -51,7 +57,7 @@ const Wallet: React.FC = () => {
       setAccount(accounts[0] || null);
       localStorage.setItem('account', accounts[0]);
     } else {
-      // toast the error
+      showError('Please download the Metamask extension on your browser.')
     }
   }
 
@@ -61,7 +67,7 @@ const Wallet: React.FC = () => {
         await navigator.clipboard.writeText(account);
       }
       
-      // toast
+      showInfo('Copied address to clipboard.');
     } catch (err) {
       console.log(err);
     }
@@ -104,16 +110,20 @@ const Wallet: React.FC = () => {
                 <LaunchIcon className="cursor-pointer dark:text-white" onClick={openScanHandler} />
               </div>
             </div>
-            <div className="mt-8 flex flex-col">
-              <h2 className="text-gray-400 ">Total Balance</h2>
-              <div className="flex justify-center items-center mt-2">
-                <img src={NrgeImg} alt="NRGE logo large" className="w-12 h-12 mr-1" />
-                <span className="text-2xl font-medium dark:text-white">{ngreBalance}</span>
-              </div>
-              <div className="flex justify-center items-center mt-2">
-                <span className="text-2xl font-medium dark:text-white">${Number(ngreBalance) * Number(usdPrice)}</span>
-              </div>
-            </div>
+            {
+              loading ? <Spinner /> : (
+                <div className="mt-8 flex flex-col">
+                  <h2 className="text-gray-400 ">Total Balance</h2>
+                  <div className="flex justify-center items-center mt-2">
+                    <img src={NrgeImg} alt="NRGE logo large" className="w-12 h-12 mr-1" />
+                    <span className="text-2xl font-medium dark:text-white">{ngreBalance}</span>
+                  </div>
+                  <div className="flex justify-center items-center mt-2">
+                    <span className="text-2xl font-medium dark:text-white">${Number(ngreBalance) * Number(usdPrice)}</span>
+                  </div>
+                </div>
+              )
+            }
           </div>
         ) : (
           <Metamask connectWallet={connectWallet} />

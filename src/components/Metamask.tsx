@@ -4,7 +4,7 @@ import MetamaskImg from '../assets/metamask.svg';
 
 const Metamask: React.FC<MetamaskProps> = ({ connectWallet }) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center justify-center">
       <img src={MetamaskImg} className="h-72 w-72" alt="Metamask Icon" />
       <h1 className="text-black dark:text-white mb-8">METAMASK</h1>
       <button
